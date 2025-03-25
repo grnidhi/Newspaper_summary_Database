@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Anything.Models.OrderMaster>
+
+@{
+    ViewData["Title"] = "PlannerIndex";
+    Layout = null;
+}
+
+<h1>PlannerIndex</h1>
+
+
+<p>
+    <a asp-action="PlannerCreate" class="btn btn-outline-danger">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Oid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IssueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Draw)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductMasters)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IssueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Draw.ProductNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductMasters.ProductNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qty)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Oid" class="btn btn-danger">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

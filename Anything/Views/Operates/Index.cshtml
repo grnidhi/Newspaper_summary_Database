@@ -1,0 +1,260 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>ShopFloor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #00bfff;
+            padding: 15px;
+            color: white;
+            text-align: center;
+            font-size: 36px;
+            position: relative;
+        }
+
+        .navbar {
+            background-color: #ccefff;
+            overflow: hidden;
+            padding: 10px;
+            text-align: center;
+        }
+
+            .navbar button {
+                background-color: #d9d9d9;
+                border: none;
+                color: black;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 8px;
+                transition: background-color 0.3s;
+            }
+
+                .navbar button:hover {
+                    background-color: #999;
+                }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+            .content .barcode-input {
+                background-color: #00bfff;
+                padding: 20px;
+                color: white;
+                border-radius: 8px;
+                display: inline-block;
+                text-align: left;
+                width: 80%;
+            }
+
+                .content .barcode-input label {
+                    display: inline-block;
+                    width: 100px;
+                    font-weight: bold;
+                }
+
+                .content .barcode-input input[type="text"] {
+                    padding: 5px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    width: 200px;
+                }
+
+                .content .barcode-input .info {
+                    display: inline-block;
+                    margin-left: 20px;
+                }
+
+        .logout {
+            position: absolute;
+            right: 10px;
+            top: 15px;
+        }
+
+        .operator-info {
+            position: absolute;
+            right: 150px;
+            top: 15px;
+            text-align: right;
+            font-size: 20px;
+        }
+
+            .operator-info div {
+                margin-bottom: 5px;
+            }
+
+        /* Updated styles for centering the form container */
+        #formContainer {
+            display: none; /* Initially hidden */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: fit-content;
+            margin: 20px auto; /* Centering the container */
+        }
+
+            #formContainer label {
+                display: inline-block;
+                width: 100px;
+                font-weight: bold;
+                vertical-align: top;
+                margin-bottom: 10px;
+            }
+
+            #formContainer input[type="text"] {
+                padding: 5px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+                width: 200px;
+                margin-bottom: 10px;
+            }
+
+            #formContainer input[type="checkbox"] {
+                margin-top: 10px;
+                margin-left: 5px;
+                vertical-align: top;
+            }
+
+        #statusMessage {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        SHOPFLOOR
+        <div class="operator-info">
+            <div id="currentTime"></div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <button onclick="location.href='@Url.Action("Index", "Operates")'">Process Barcode</button>
+        <button onclick="location.href='@Url.Action("Index", "OrderMDetails")'">Pending List</button>
+        <button onclick="location.href='@Url.Action("Create", "Operates")'">LOG OUT</button>
+    </div>
+
+    <!-- Barcode Input -->
+    <div class="content">
+        <label for="barcodeInput">Enter Barcode:</label>
+        <input type="text" id="barcodeInput" placeholder="Scan or enter barcode">
+        <span id="barcodeStatus"></span>
+    </div>
+
+    <!-- Dynamic Form Container -->
+    <div id="formContainer" class="content">
+        <!-- Fields will be generated here -->
+    </div>
+
+    <!-- Status Message -->
+    <div id="statusMessage" class="content"></div>
+
+    <!-- Submit Button -->
+    <div class="content">
+        <button id="validateButton">Validate</button>
+    </div>
+
+    <script>
+        const QcMaster = [
+            { title: 'side a', type: 'textbox' },
+            { title: 'side b', type: 'textbox' },
+            { title: 'ParaTitle', type: 'checkbox' },
+            { title: 'LICTITLE', type: 'checkbox' },
+            { title: 'Length A', type: 'textbox' },
+            { title: 'faceb', type: 'checkbox' }
+        ];
+
+        function validateBarcode(barcode) {
+            return barcode && barcode.length > 5;
+        }
+
+        function generateFields() {
+            const formContainer = $('#formContainer');
+            formContainer.empty();
+
+            QcMaster.forEach(item => {
+                let fieldLabel = $('<label>').text(item.title + ": ");
+                let inputField;
+
+                if (item.type === 'textbox') {
+                    inputField = $('<input>').attr('type', 'text').attr('name', item.title);
+                } else if (item.type === 'checkbox') {
+                    inputField = $('<input>').attr('type', 'checkbox').attr('name', item.title);
+                }
+
+                formContainer.append(fieldLabel);
+                formContainer.append(inputField);
+                formContainer.append('<br>');
+            });
+
+            formContainer.show();
+        }
+
+        $(document).ready(function () {
+            $('#barcodeInput').on('blur', function () {
+                let barcode = $(this).val();
+                if (validateBarcode(barcode)) {
+                    generateFields();
+                    $('#statusMessage').text("Please fill in all fields.");
+                } else {
+                    $('#statusMessage').text("Invalid Barcode");
+                    $('#formContainer').hide();
+                }
+            });
+
+            // Validate button click event
+            $('#validateButton').on('click', function () {
+                validateForm();
+            });
+
+            setInterval(updateTime, 1000);
+        });
+
+        function updateTime() {
+            const now = new Date();
+            const formattedTime = now.toLocaleTimeString();
+            $('#currentTime').text(`Time: ${formattedTime}`);
+        }
+
+        function validateForm() {
+            let allFieldsFilled = true;
+
+            $('#formContainer input').each(function () {
+                if ($(this).attr('type') === 'text' && $(this).val() === '') {
+                    allFieldsFilled = false;
+                } else if ($(this).attr('type') === 'checkbox' && !$(this).is(':checked')) {
+                    allFieldsFilled = false;
+                }
+            });
+
+            if (allFieldsFilled) {
+                $('#statusMessage').text("Pass");
+            } else {
+                $('#statusMessage').text("Fail");
+            }
+        }
+    </script>
+</body>
+</html>

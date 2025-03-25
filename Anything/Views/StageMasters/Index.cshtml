@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Anything.Models.StageMaster>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Stagemaster/Dashboard</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success">Create New</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StageDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DrawingMaster)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StageDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name.ProcessDescrption)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DrawingMaster.ProductNumber)
+                </td>
+                <td>
+                   
+
+                    <a asp-action="Delete" asp-route-id="@item.StageId" class="btn btn-secondary">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

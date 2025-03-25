@@ -1,0 +1,44 @@
+﻿@model Anything.Models.RegistrationViewModel;
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>User Page</h2>
+
+@using (Html.BeginForm())
+{
+    @if (ViewBag.Message != null)
+    {
+        <div class="form-group" style="color:#000000;">@ViewBag.Message</div>
+    }
+    <div class="form-group">
+        @Html.LabelFor(m => m.Firstname)
+        @Html.TextBoxFor(m => m.Firstname, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Lastname)
+        @Html.TextBoxFor(m => m.Lastname, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username)
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserType)
+        @Html.DropDownListFor(m => m.UserType, new SelectList(Enum.GetValues(typeof(UserType))), new { @class = "form-control" })
+    </div>
+    <br />
+    <br />
+    <button type="submit" class="btn btn-primary">Register User</button>
+}
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Anything.Models.Draw>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Drawing Product Master/Dashboard</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-dark">Create New</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.process)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.process.ProcessDescrption)
+                </td>
+                <td>
+                   
+
+                    <a asp-action="Delete" asp-route-id="@item.DrawingId" class="btn btn-success">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

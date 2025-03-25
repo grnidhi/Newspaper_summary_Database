@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Anything.Models.QcMaster>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Dashboard/Add Qc Form</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-info">Create New</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FormName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParameterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParameterTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParameterType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Min)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Max)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FormName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stage.StageDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParameterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParameterTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParameterType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Min)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Max)
+                </td>
+                <td>
+                    
+
+                    <a asp-action="Delete" asp-route-id="@item.QcMId" class="btn btn-success">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

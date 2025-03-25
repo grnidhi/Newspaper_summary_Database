@@ -1,0 +1,76 @@
+﻿@model Anything.Models.ProductMaster
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ProductMaster</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
+            <div class="form-group">
+                <label asp-for="ProductNumber" class="control-label"></label>
+                <input asp-for="ProductNumber" class="form-control" />
+                <span asp-validation-for="ProductNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DrawingId" class="control-label"></label>
+                <select asp-for="DrawingId" class="form-control" asp-items="ViewBag.DrawingId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductNumber" class="control-label"></label>
+                <select id="ProductName" name="ProductId" class="form-control">
+                    <option value="">-- Select Product --</option>
+                </select>
+            </div>
+            <div class="form-container">
+                <!-- Add the remaining form fields here -->
+                <!-- ... -->
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#CustomerId').change(function () {
+                var customerId = $(this).val();
+                var productDropdown = $('#ProductName');
+
+                // Clear the Product dropdown
+                productDropdown.empty();
+
+                if (customerId) {
+                    $.getJSON('/ProductMasters/GetProductsByCustomer', { customerId: customerId }, function (data) {
+                        productDropdown.append('<option value="">-- Select Product --</option>');
+                        $.each(data, function (index, product) {
+                            productDropdown.append('<option value="' + product.productId + '">' + product.productNumber + '</option>');
+                        });
+                    });
+                } else {
+                    productDropdown.append('<option value="">-- Select Product --</option>');
+                }
+            });
+        });
+    </script>
+}

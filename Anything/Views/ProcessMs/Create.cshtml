@@ -1,0 +1,82 @@
+﻿@model Anything.Models.ProcessM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Process Information</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-container">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group  col-md-4">
+                    <label asp-for="ProcessName" class="control-label"></label>
+                    <input asp-for="ProcessName" class="form-control" />
+                    <span asp-validation-for="ProcessName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label asp-for="ProcessDescrption" class="control-label"></label>
+                    <input asp-for="ProcessDescrption" class="form-control" />
+                    <span asp-validation-for="ProcessDescrption" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary " />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="back-link">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    /* Custom styles for alignment and polished look */
+    .form-container {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #495057;
+    }
+
+    .form-group select,
+    .form-group input {
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .btn-submit {
+        margin-top: 20px;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-row {
+        margin-top: 20px;
+    }
+
+    .back-link {
+        margin-top: 20px;
+        display: block;
+    }
+</style>

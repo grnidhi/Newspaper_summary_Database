@@ -1,0 +1,95 @@
+﻿@{
+   
+    var stage = TempData["SelectedStage"] as string;
+    var product = TempData["SelectedProduct"] as string;
+}
+
+<h2>Process Page</h2>
+
+<div>
+    <p>Stage: @stage</p>
+    <p>Product: @product</p>
+</div>
+
+<!-- Barcode Input -->
+<div>
+    <label for="barcodeTextbox">Barcode:</label>
+    <input type="text" id="barcodeTextbox" name="barcodeTextbox" placeholder="Enter Barcode" />
+
+</div>
+
+<!-- Dynamic Popup -->
+<div id="parameterPopup" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Select Parameters</h3>
+        <div id="parameterContent">
+            @* Dynamic content will be loaded here *@
+            <!-- Example dynamic parameters -->
+            <div>
+                <label for="sideA">Side A:</label>
+                <input type="checkbox" id="sideA" name="sideA" value="Side A" />
+            </div>
+            <div>
+                <label for="sideB">Side B:</label>
+                <input type="checkbox" id="sideB" name="sideB" value="Side B" />
+            </div>
+            <!-- Add more parameters as needed -->
+        </div>
+    </div>
+</div>
+
+<!-- Selected Parameters Display -->
+<div id="selectedParameters">
+    <!-- This will dynamically show selected parameters -->
+</div>
+
+<!-- Pass/Fail Button -->
+<div>
+    <button id="statusButton" class="fail">Fail</button>
+</div>
+
+@section Scripts {
+    <script>
+        // Show popup when barcode is entered and user clicks outside the textbox
+        $("#barcodeTextbox").on("blur", function () {
+            $("#parameterPopup").show();
+        });
+
+        // Close popup
+        $(".close").on("click", function () {
+            $("#parameterPopup").hide();
+        });
+
+        // Reflect selected parameters
+        $("input[type='checkbox']").on("change", function () {
+            if ($(this).is(':checked')) {
+                $("#selectedParameters").append("<p>" + $(this).val() + "</p>");
+            } else {
+                $("#selectedParameters p:contains('" + $(this).val() + "')").remove();
+            }
+            checkFields();
+        });
+
+        // Check if all fields are filled to switch Fail to Pass
+        function checkFields() {
+            let allFilled = true;
+
+            // Check all required checkboxes or text inputs
+            $("input[type='text'], input[type='checkbox']").each(function () {
+                if ($(this).is(":checked") || $(this).val()) {
+                    // Field filled
+                } else {
+                    allFilled = false;
+                    return false;
+                }
+            });
+
+            if (allFilled) {
+                $("#statusButton").text("Pass").removeClass("fail").addClass("pass");
+            } else {
+                $("#statusButton").text("Fail").removeClass("pass").addClass("fail");
+            }
+        }
+    </script>
+}

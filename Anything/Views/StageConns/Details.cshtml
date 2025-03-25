@@ -1,0 +1,48 @@
+﻿@model Anything.Models.StageConn
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>StageConn</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Gziee)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Gziee.GName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CurrentStage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CurrentStage.StageDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FailStage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FailStage.StageDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PassStage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PassStage.StageDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SCid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

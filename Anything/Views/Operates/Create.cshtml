@@ -1,0 +1,185 @@
+﻿@model Anything.Models.Operate
+@{
+    ViewData["Title"] = "Create";
+    var today = DateTime.Now.ToString("dd/MM/yyyy");
+    Layout = null;
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #7EA7C5, #DFCAA6); /* Updated background gradient */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 20px; /* Increased padding */
+        border-radius: 15px; /* Increased border-radius */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Updated box-shadow */
+        width: 800px; /* Set a fixed width */
+    }
+
+    h1 {
+        font-size: 48px;
+        color: #58A7C8;
+        margin-bottom: 10px;
+        font-weight: bold;
+        text-transform: uppercase; /* Added text-transform to match the image */
+        letter-spacing: 3px; /* Increased letter-spacing */
+    }
+
+    h2 {
+        font-size: 24px;
+        color: #0000FF; /* Changed color to blue */
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            font-weight: bold; /* Made label text bold */
+            color: #333; /* Set label color */
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-group select, .form-group input {
+            font-size: 15px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .form-row .form-group {
+            width: 48%; /* Adjust width for two columns */
+        }
+
+    .btn-primary {
+        background-color: #58A7C8;
+        border-color: #58A7C8;
+        font-size: 18px;
+        padding: 10px 20px;
+        width: 100%; /* Full-width button */
+        border-radius: 25px; /* Rounded button */
+        color: #ffffff;
+    }
+
+        .btn-primary:hover {
+            background-color: #4a91ad; /* Slightly darker shade on hover */
+            border-color: #4a91ad;
+        }
+
+    .form-group:last-of-type {
+        margin-bottom: 0; /* Removes margin from last form group */
+    }
+</style>
+
+<div class="container">
+    <h1>Operator Login</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <!-- Drawing Product and Stage Selection -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label asp-for="DrawingId" class="control-label">Select Drawing Product</label>
+                        <select asp-for="DrawingId" class="form-control" asp-items="ViewBag.DrawingId" id="DrawingId"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="StageId" class="control-label">Select Stage</label>
+                        <select asp-for="StageId" class="form-control" asp-items="ViewBag.StageId" id="StageId"></select>
+                    </div>
+                </div>
+
+                <!-- Operator Name and Operator Code Input -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label asp-for="OperatorName" class="control-label">Operator Name</label>
+                        <input asp-for="OperatorName" class="form-control" />
+                        <span asp-validation-for="OperatorName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="OperatorCode" class="control-label">Operator Code</label>
+                        <input asp-for="OperatorCode" class="form-control" />
+                        <span asp-validation-for="OperatorCode" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Optical Instrument and Shift Selection -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label asp-for="LineId" class="control-label">Line</label>
+                        <select asp-for="LineId" class="form-control" asp-items="ViewBag.LineId"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ShiftId" class="control-label">Select Shift</label>
+                        <select asp-for="ShiftId" class="form-control" asp-items="ViewBag.ShiftId"></select>
+                    </div>
+                </div>
+
+                <!-- Date Input -->
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label">Date</label>
+                    <input type="text" class="form-control" value="@today" readonly />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group">
+                    <input type="submit" value="LOGIN" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/AdminLte//plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DrawingId').change(function () {
+
+            var drawingId = $(this).val();
+            console.log("Selected DrawingId: " + drawingId); // Debugging
+            if (drawingId) {
+                $.getJSON('@Url.Action("GetStagesByDrawingId", "Operates")', { drawingId: drawingId }, function (stages) {
+                    console.log("Stages received: ", stages); // Debugging
+                    var stageSelect = $('#StageId');
+                    stageSelect.empty();
+                    stageSelect.append('<option value="" disabled selected>Select a Stage</option>');
+                    $.each(stages, function (index, stage) {
+                        console.log("Appending stage: ", stage); // Debugging
+                        stageSelect.append('<option value="' + stage.stageId + '">' + stage.stageName + '</option>');
+                    });
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    console.error("Failed to fetch stages: " + textStatus + ", " + errorThrown); // Debugging
+                });
+            } else {
+                $('#StageId').empty();
+            }
+        });
+    });
+
+</script>
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}

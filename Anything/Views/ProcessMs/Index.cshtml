@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Anything.Models.ProcessM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Dashboard</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-warning">Create New</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProcessName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProcessDescrption)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProcessName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProcessDescrption)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProcessId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProcessId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProcessId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

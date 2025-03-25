@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .dashboard-cards {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .card {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            color: #fff;
+        }
+
+            .card.blue {
+                background-color: #007BFF;
+            }
+
+            .card.green {
+                background-color: #28a745;
+            }
+
+            .card.orange {
+                background-color: #fd7e14;
+            }
+
+            .card.red {
+                background-color: #dc3545;
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            }
+
+        .card-content h2 {
+            margin: 0;
+            font-size: 3em;
+        }
+
+        .card-content p {
+            margin: 10px 0 0 0;
+            font-size: 1.1em;
+        }
+
+        .card-content i {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .more-info {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Dashboard</h1>
+        <h4>Hello @ViewBag.Name</h4>
+        <div class="dashboard-cards">
+            <div class="card blue" onclick="location.href='orders.html';">
+                <div class="card-content">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h2>2</h2>
+                    <p>Total Orders</p>
+                </div>
+                <p class="more-info">More info &#8594;</p>
+            </div>
+            <div class="card green" onclick="location.href='users.html';">
+                <div class="card-content">
+                    <i class="fas fa-users"></i>
+                    <h2>4</h2>
+                    <p>Total Users</p>
+                </div>
+                <p class="more-info">More info &#8594;</p>
+            </div>
+            <div class="card orange" onclick="location.href='customers.html';">
+                <div class="card-content">
+                    <i class="fas fa-user-plus"></i>
+                    <h2>3</h2>
+                    <p>Total Customers</p>
+                </div>
+                <p class="more-info">More info &#8594;</p>
+            </div>
+            <div class="card red" onclick="location.href='cables.html';">
+                <div class="card-content">
+                    <i class="fas fa-cable"></i>
+                    <h2>110</h2>
+                    <p>Total Cables Produced</p>
+                </div>
+                <p class="more-info">More info &#8594;</p>
+            </div>
+        </div>
+
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

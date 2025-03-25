@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Anything.Models.OrderMaster>
+
+@{
+    ViewData["Title"] = "OrderMaster";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Dashboard</title>
+
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/AdminLte/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/AdminLte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/AdminLte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/AdminLte/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLte/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/AdminLte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/AdminLte/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/AdminLte/plugins/summernote/summernote-bs4.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/AdminLte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/AdminLte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/AdminLte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="@Url.Action("DisplayPlanner", "Account")" class="brand-link">
+                <h2 class="brand-text font-weight-light">SHOPFLOOR</h2>
+            </a>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/Account/Logout" class="btn btn-default">Logout</a>
+                </div>
+            </div>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item">
+                            <a href="@Url.Action("DisplayPlanner", "Account")" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Home Page</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="OrderMasters" asp-action="Index" class="nav-link ">
+                                <i class="nav-icon fas fa-handshake"></i>
+                                <p>Order Master</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Order Master</h1>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Orders</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <p>
+                                <a asp-action="Create" class="btn btn-outline-danger">Create New</a>
+                            </p>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>@Html.DisplayNameFor(model => model.Oid)</th>
+                                        <th>@Html.DisplayNameFor(model => model.OrderNum)</th>
+                                        <th>@Html.DisplayNameFor(model => model.IssueDate)</th>
+                                        <th>@Html.DisplayNameFor(model => model.Draw)</th>
+                                        <th>@Html.DisplayNameFor(model => model.ProductMasters)</th>
+                                        <th>@Html.DisplayNameFor(model => model.Qty)</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.Oid)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.OrderNum)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.IssueDate)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Draw.ProductNumber)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.ProductMasters.ProductNumber)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Qty)</td>
+                                            <td>
+                                                <a asp-action="Delete" asp-route-id="@item.Oid" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- jQuery -->
+        <script src="~/AdminLte/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="~/AdminLte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- DataTables -->
+        <script src="~/AdminLte/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/AdminLte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="~/AdminLte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="~/AdminLte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="~/AdminLte/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="~/AdminLte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/AdminLte/dist/js/adminlte.min.js"></script>
+    </div>
+    <!-- ./wrapper -->
+</body>
+</html>
