@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles2.css">
+    <title>BUGLE-CRUNCH</title>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-header">
+            <div class="nav-logo-container">
+                <img src="./assets/logo.svg" alt="BUGLE-CRUNCH logo">
+            </div>
+
+        </div>
+    </nav>
+    <section class="search">
+        <div class="search-container">
+            <input type="text" name="searchField" id="search-field" placeholder="search">
+            <label for="searchField"><a href="">Search</a></label>
+        </div>
+    </section>
+    <section class="search-filters">
+        <div class="filter-list-container">
+            <ul class="filter-list">
+                <li class="filter-item" id="category">
+                    category
+                </li>
+                <li class="filter-item" id="journalist">
+                    journalist
+                </li>
+                <li class="filter-item" id="title">
+                    title
+                </li>
+                <li class="filter-item" id="description">
+                    description
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="result">
+        <div class="result-count">
+            <h2 id="result-count"></h2>
+        </div>
+        <div class="result-data">
+            <!-- each data item -->
+            <div class="result-item">
+                <img class="result-img" src="./assets/vintage.jpg" alt="">
+                <div class="result-title">some title</div>
+                <p class="result-description">some more text which is longer jsdlkfa dsfkjsdkjf akfd af dfaf 
+                <a class="result-readmore" href="/id to the description">read-more</a>
+                </p>
+                <div class="result-journalist">Miky</div>
+            </div>
+
+            <!-- duplicates -->
+            <div class="result-item">
+                <img class="result-img" src="./assets/vintage.jpg" alt="">
+                <div class="result-title">some title</div>
+                <p class="result-description">some more text which is longer jsdlkfa dsfkjsdkjf akfd af dfaf 
+                <a class="result-readmore" href="/id to the description">read-more</a>
+                </p>
+                <div class="result-journalist">Miky</div>
+            </div>
+
+            <div class="result-item">
+                <img class="result-img" src="./assets/vintage.jpg" alt="">
+                <div class="result-title">some title</div>
+                <p class="result-description">some more text which is longer jsdlkfa dsfkjsdkjf akfd af dfaf 
+                <a class="result-readmore" href="/id to the description">read-more</a>
+                </p>
+                <div class="result-journalist">Miky</div>
+            </div>
+
+            <div class="result-item">
+                <img class="result-img" src="./assets/vintage.jpg" alt="">
+                <div class="result-title">some title</div>
+                <p class="result-description">some more text which is longer jsdlkfa dsfkjsdkjf akfd af dfaf 
+                <a class="result-readmore" href="/id to the description">read-more</a>
+                </p>
+                <div class="result-journalist">Miky</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        //global state 
+        let filterSelection = "";
+        //updates every 
+        function updateUi(array){
+            array.forEach(fun=>{
+                fun();
+            })
+        }
+
+        function updateSearchField(){
+            const searchField = document.getElementById("search-field");
+            searchField.setAttribute('placeholder',"search "+filterSelection);
+        }
+
+        const filterListItems = document.querySelectorAll(".filter-item");
+        filterListItems.forEach(element => {
+            element.addEventListener("click",(e)=>{
+                filterListItems.forEach(item=>{
+                    if(item.getAttribute('id')!=e.target.getAttribute('id')){
+                        item.setAttribute('class',"filter-item");
+                    }
+                    else{
+                        item.setAttribute('class',"filter-item filter-item-selected");
+                        filterSelection=item.getAttribute('id');
+                        updateUi([updateSearchField]);
+                    }
+                })
+
+            })
+        });
+
+
+
+    </script>
+</body>
+</html>

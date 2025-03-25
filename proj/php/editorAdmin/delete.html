@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<style>
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	font-family:"Arial",sans-serif;
+}
+	body{
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			min-height:100vh;
+			background:#060606;
+	}
+	
+	.e{
+		width:400px;
+		padding:20px;
+		background:#F1E6D6;
+		border:1px solid #ccc;
+		border-radius:10px;
+	}
+	
+	.e h2
+	{
+		font-size:20px;
+		text-align:center;
+		margin-bottom:10px;
+	}
+	.e .btn
+	{
+		display: block;
+    width: 50%;
+    padding: 10px;
+    background-color: #060606;
+    color: #F1E6D6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+	}	
+	
+	.d{
+		width:400px;
+		padding:20px;
+		background:#F1E6D6;
+		border:1px solid #ccc;
+		border-radius:10px;
+	}
+	header{
+	
+			height:300px;
+			width:50;
+		}
+	</style>
+	
+	</head>
+	<body>
+	
+		<div class="d">
+			<form action="delete.php" method="post" >
+			<h1>EDITOR FORM</h1><br>
+			<label>Editor ID:</label>
+			<input type="text" placeholder="enter editor id" name="id"required><br><br>
+			<input type="submit"  value="submit"><br>
+			</form>
+		</div>
+	</body>
+</html>

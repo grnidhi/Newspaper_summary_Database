@@ -1,0 +1,112 @@
+:root{
+    --primary-main:#F1E6D6;
+    --primary-dark:#060606;
+    --secondary-main:#CFC2B2;
+    --secondary-dark:#443E38;
+    --primary-accent:#967968;
+}
+
+body{
+    background-color: var(--primary-main);
+    padding-inline: 5vw;
+    font-family: 'Oswald', sans-serif;
+    height: 100vh;
+
+}
+p{
+    font-weight: 100;
+    color: var(--secondary-dark);
+    font-family: 'Roboto', sans-serif;
+}
+/* navigation styles */
+.nav-header{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.nav-logo-container{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: inline-block;
+    border-top: var(--primary-dark) 2px solid;
+    border-bottom: var(--primary-dark) 2px solid;
+}
+/* styles for search bar */
+
+.search{
+    padding: 5px;
+    border-top:var(--primary-dark) 1px solid;   
+    border-bottom:var(--primary-dark) 1px solid;   
+
+}
+.search-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+.search-container input{
+    border: none;
+    border: var(--primary-dark) 1px solid;
+    background-color: var(--primary-main);
+    font-family: 'Roboto', sans-serif;
+
+}
+.search-container label{
+    font-weight: 100;
+    color: var(--secondary-dark);
+    font-family: 'Roboto', sans-serif;
+}
+.search-container a{
+    text-decoration: none;
+    color: var(--secondary-dark);
+    font-family: 'Roboto', sans-serif;
+}
+.search-container a:hover{
+    color: var(--primary-accent);
+}
+
+
+/* based on filter */
+.filter-list{
+    display:flex;
+    list-style: none;
+    gap: 10px;
+}
+.filter-item{
+    padding: 2px;
+    padding-inline: 5px;
+    border: var(--primary-dark) 1px solid;
+}
+.filter-item:hover{
+    background-color: var(--primary-dark);
+    color: var(--primary-main);
+    cursor: pointer;
+}
+.filter-item-selected{
+    background-color: var(--primary-dark);
+    color: var(--primary-main);
+}
+
+
+/* result */
+.result-data{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    height: 100%;
+
+}
+.result-item{
+    border: var(--primary-dark) 1px solid;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+}
+.result-img{
+    height: 150px;
+    width: 100%;
+}

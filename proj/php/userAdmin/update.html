@@ -1,0 +1,174 @@
+<html>
+     <head>
+        <title>
+            Update
+        </title>
+		<style>
+			*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+    }
+
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#060606;
+}
+
+.w{
+    
+    position: relative;
+    width: 700px;
+    height: 800px;
+    background:#f1e6d6;
+    padding:30px 40px;
+}
+
+form{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: solid;
+    border-top: solid;
+    position:absolute;
+    inset:2px;
+    background:#F1E6D6;
+    padding:30px 30px;
+
+}
+h2{
+    border-bottom: solid;
+    border-top: solid;
+    color:#060606;
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+}
+.p{
+    position: relative;
+    width: 300px;
+    margin-top: 5px;
+}
+.p input{
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color:#060606;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    z-index: 10;
+}
+input[type="reset"]
+{
+    font-size: 20px;
+    border: none;
+    outline:none ;
+    background: #060606;
+    padding: 5px;
+    color: #F1E6D6;
+    margin-top: 40px;
+    border-radius: 3px;
+    font-weight: 600;
+    cursor: pointer;
+}
+input[type="submit"]
+{
+    font-size: 20px;
+    border: none;
+    outline:none ;
+    background: #060606;
+    padding: 5px;
+    color: #F1E6D6;
+    margin-top: 40px;
+    border-radius: 3px;
+    font-weight: 600;
+    cursor: pointer;
+}
+input[type="submit"]:active
+{
+    background: linear-gradient(90deg,#060606,#F1E6D6);
+    opacity: 0.8;
+}
+
+form span{
+    font-weight: 600;
+}
+		</style>
+        <title>insert form</title>
+        <script>
+        </script>
+     </head>
+    <body>
+        <div class="w">
+			<form id="form" action="updatedb.php" method="post" onsubmit="return f1()">
+				<h2>Update user</h2>
+                <div class="p">
+                    <span>Enter the ID of user:</span><br>
+					<input type="text" class="f"  name="uid" required autofocus>
+				</div>
+
+                <div class="p">
+                    <span>Enter your full name:</span><br>
+					<input type="text" class="f" id="n" name="name" required autofocus>
+				</div>
+                <div class="p">
+					<span>Enter your email:</span><br>
+					<input type="email" class="f" id="e" min="22" name="email" required>
+                    <i></i>
+				</div>
+				<div class="p">
+					<span>Enter the password</span><br>
+					<input type="password" class="f" name="password" required>
+                    <i></i>
+				</div>
+				<div >
+					<span>select your date of birth</span>
+					<input type="date"  name="date" required>
+                    <br>
+                    <i></i>
+				</div>
+                <div >
+					<span>Enter your phone number</span>
+					<input type="text" class="f" id="p" name="pno" max="10" required>
+                    <i></i>
+				</div>
+                <br>
+                <div>
+					<span>Select your preferences</span><br><br>
+                    Movie
+					<input type="checkbox"   name="pref[]" value="movie" ><br>
+                    Sports
+                    <input type="checkbox"   name="pref[]" value="sports" ><br>
+                    Technology
+                    <input type="checkbox"   name="pref[]" value="technology" ><br>
+                    Education
+                    <input type="checkbox"   name="pref[]" value="education" ><br>
+                    Politics
+                    <input type="checkbox"  name="pref[]" value="politics" ><br>
+                    Entertainment
+                    <input type="checkbox"   name="pref[]" value="entertainment" ><br>
+                    <i></i>
+				</div>
+				<div >
+                    <br><br>
+                    <label for="">Gender</label>
+					<input type="radio" class="f" id="radio-male" name="gender" value="male" required><label for="radio-male">Male</label>
+                    <input type="radio" class="f" id="radio-female" name="gender" value="female"><label for="radio-female">Female</label>
+                    <input type="radio" class="f" id="radio-other" name="gender" value="other"><label for="radio-other">other</label>
+
+                    <i></i>
+				</div>
+
+				<br><br><input type="reset" class="s" value="Reset">
+                <input type="submit" class="s"  value="Update" name="submit1">
+            </form>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./../styles/styles.css">
+    <title>BUGLE-CRUNCH</title>
+</head>
+<body> 
+    <div class="main">
+        
+        <nav class="nav-container">
+            <div class="nav-header">
+                <div class="nav-logo-container">
+                    <img src="./../assets/logo.svg" alt="BUGLE-CRUNCH logo">
+                </div>
+
+            </div>
+        </nav>
+        <section class="category">
+            <div class="category-container">
+                <ul class="category-list">
+                    <li class="category-list-item">
+                        <img src="./../assets/list.svg" alt="list icon">
+                    </li>
+                    <li class="category-list-item">
+                        MOVIES
+                    </li>
+                    <li class="category-list-item">
+                        AUTOMOBILES
+                    </li>
+                    <li class="category-list-item">
+                        CRICKET
+                    </li>
+                    <li class="category-list-item">
+                        BOLLYWOOD
+                    </li>
+                    <li class="category-list-item">
+                        EDUCATION
+                    </li>
+                    <li class="category-list-item">
+                        FANS
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="content">
+            <div class="content-container">
+                <div class="content-top-news">
+                    <div class="content-top-news-container">
+
+
+                        <div class="content-top-news-primary content-top-item" id="content-top-news-1">
+                            <!-- <div class="content-img-container">
+                                
+                            </div> -->
+                            <div class="content-img-container">
+                                <img src="" alt="" width="100%" height="100%" class="content-img">
+                            </div>
+                            <h3 class="content-title"> 
+                                title primary one
+                            </h3>
+                            <p class="content-desc">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam quidem eveniet nemo repellat excepturi ab, quae
+                            </p>
+                            <h6>
+                                Journalist : <span id="journalist-name-1"></span> 
+                            </h6>
+                        </div>
+
+                        <div class="content-top-news-secondary content-top-item" id="content-top-news-2">
+                            <div class="content-img-container">
+                                <img src="" alt="" width="100%" height="100%" class="content-img">
+                            </div>
+                            <h3 class="content-title"> 
+                                title primary onedfsdfsd
+                            </h3>
+                            <p class="content-desc">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam quidem eveniet nemo repellat excepturi ab, quae
+                            </p>
+                            <h6>
+                               Journalist : <span id="journalist-name-2"></span> 
+                            </h6>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+
+                <div class="content-main">
+                    <div class="content-main-container">
+                        <div class="main-img"></div>
+                        <h2 class="main-title">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing 
+                        </h2>
+                        <p class="main-desc">
+                            Lorem ipsum dolor sit amet consectetur,epturi vornatur consntur nihil earum ipsa corporis nostrum expedita maiores nisi 
+                        </p>
+                        <h6 class="main-journalist-name">
+                            Journalist : <span id="journalist-name"></span>
+                        </h6>
+                    </div>
+                </div>
+
+                <!-- array of bite sized news -->
+                <div class="content-bite-news">
+                    <div class="bite-news-item">
+                        <h3 class="bite-news-title">
+                            something 1
+                        </h3>
+                        <p class="bite-news-desc">
+                            loreem  dfjkds dfhd ghjsd hds
+                            dsjfjsf sjdf sdjfsd fs ...<a href="/home.html">read more</a>
+                        </p>
+                    </div>
+                    <div class="bite-news-item">
+                        <h3 class="bite-news-title">
+                            something 1
+                        </h3>
+                        <p class="bite-news-desc">
+                            loreem  dfjkds dfhd ghjsd hds
+                            dsjfjsf sjdf sdjfsd fs ...<a href="/home.html">read more</a>
+                        </p>
+                    </div>
+                    <div class="bite-news-item">
+                        <h3 class="bite-news-title">
+                            something 1
+                        </h3>
+                        <p class="bite-news-desc">
+                            loreem  dfjkds dfhd ghjsd hds
+                            dsjfjsf sjdf sdjfsd fs ...<a href="/home.html">read more</a>
+                        </p>
+                    </div>
+                    <div class="bite-news-item">
+                        <h3 class="bite-news-title">
+                            something 1
+                        </h3>
+                        <p class="bite-news-desc">
+                            loreem  dfjkds dfhd ghjsd hds
+                            dsjfjsf sjdf sdjfsd fs ...<a href="/home.html">read more</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        let articles = [];
+        let contentImg = document.getElementsByClassName('content-img');
+        let contentTitle = document.getElementsByClassName('content-title');
+        let contentDesc = document.getElementsByClassName('content-desc');
+
+
+        fetch('./../php/getHome.php').then(res=>{
+            return res.json();
+        }).then(res=>{
+            articles = res;
+            for(let i=0;i<2;i++){
+                contentTitle[i].innerHTML = articles[i]['title'];
+                contentDesc[i].innerHTML = articles[i]['description'];
+                contentImg[i].setAttribute('src',articles[i]['photoURL']); 
+                console.log(contentImg[i])
+            }
+        })
+
+
+
+
+    </script>
+</body>
+</html>

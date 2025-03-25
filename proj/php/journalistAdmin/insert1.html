@@ -1,0 +1,196 @@
+<html>
+     <head>
+        <title>
+            Insert
+        </title>
+		<style>
+			*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+    }
+
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#060606;
+}
+
+.w{
+    
+    position: relative;
+    width: 700px;
+    height: 700px;
+    background:#f1e6d6;
+    padding:30px 40px;
+ 
+}
+
+form{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: solid;
+    border-top: solid;
+    position:absolute;
+    inset:2px;
+    background:#F1E6D6;
+    padding:30px 30px;
+
+}
+h2{
+    border-bottom: solid;
+    border-top: solid;
+    color:#060606;
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+}
+.p{
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+}
+.p input{
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color:#060606;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    z-index: 10;
+}
+input[type="reset"]
+{
+    font-size: 20px;
+    border: none;
+    outline:none ;
+    background: #060606;
+    padding: 5px;
+    color: #F1E6D6;
+    margin-top: 40px;
+    border-radius: 3px;
+    font-weight: 600;
+    cursor: pointer;
+}
+input[type="submit"]
+{
+    font-size: 20px;
+    border: none;
+    outline:none ;
+    background: #060606;
+    padding: 5px;
+    color: #F1E6D6;
+    margin-top: 40px;
+    border-radius: 3px;
+    font-weight: 600;
+    cursor: pointer;
+}
+input[type="submit"]:active
+{
+    background: linear-gradient(90deg,#060606,#F1E6D6);
+    opacity: 0.8;
+}
+.p span
+{
+    position: absolute;
+    left:0;
+    padding: 20px 10px 10px;
+    font-size:1em;
+    color:#060606;
+    pointer-events: none;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+.p input:valid ~ span,
+.p input:focus ~ span
+{
+    color: #060606;
+    transform: translateX(-10px) translateY(-30px);
+    font-size: 0.75em;
+}
+		</style>
+        <title>insert form</title>
+        <script>
+            function f1()
+            {
+                var x=document.getElementById("e").value;
+                var y=document.getElementById("p").value;
+                var ph=/^[789]{1}[0-9]{9}$/;
+                var em=/^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+)\.([a-z]+)?$/;
+                if(em.test(x)==false){
+                    alert("enter valid email_id");
+                    return false;
+                }
+                else if(ph.test(y)==false){
+                    alert(" enter valid phone_no");
+                    return false;
+                }
+                else {
+                    return true;
+                }
+                    
+            }
+        </script>
+     </head>
+    <body>
+        <div class="w">
+			<form id="form" action="insertdb.php" method="post" onsubmit="return f1()">
+				<h2>Insert</h2>
+                <div class="p">
+					<input type="text" class="f" id="n" name="name" required autofocus>
+					<span>Enter your full name:</span>
+                    <i></i>
+				</div>
+                <div class="p">
+					<input type="number" class="f" id="a" min="22" name="age" required>
+					<span>Enter your age:</span>
+                    <i></i>
+				</div>
+				<div class="p">
+					<input type="email" class="f" id="e" name="email" required>
+					<span>Enter your email id:</span>
+                    <i></i>
+				</div>
+				<div class="p">
+					<input type="text" class="f" id="p" name="phnone" required>
+					<span>Enter your phone_no:</span>
+                    <i></i>
+				</div>
+                <br><br><label>Chose the language of your preference:</label> 
+                <input type="radio" name="lang" value="english">English
+                <input type="radio" name="lang" value="hindi">Hindi
+                <input type="radio" name="lang" value="konkani">Konkani
+                <input type="radio" name="lang" value="marathi">Marathi
+				<br><br><label>Chose your expertise:</label>
+				Broadcast: <input type="checkbox" id="br"  name="expertise[]"  value="broadcast">
+				Multimedia: <input type="checkbox" id="mu"  name="expertise[]"  value="multimedia">
+				Investigative: <input type="checkbox" id="in"  name="expertise[]"  value="investigative">
+                <br><br>
+                <label>Chose the highest qualification</label>
+                <select name="qual">
+                    <option value="">None</option>
+                    <option value="BA">BA</option>
+                    <option value="MA">MA</option>
+                    <option value="MBA">MBA</option>
+                    <option value="BE">BE</option>
+                    <option value="ME">ME</option>
+                    <option value="PHd">PHd</option>
+                    <option value="MSc">MSc</option>
+                    <option value="BSc">BSc</option>
+                    <option value="Bcom">Bcom</option>
+                    <option value="Mcom">Mcom</option>
+                </select>
+				
+				<br><br><input type="reset" class="s" value="Reset">
+                <input type="submit" class="s"  value="Insert" name="submit1">
+            </form>
+        </div>
+
+    </body>
+</html>

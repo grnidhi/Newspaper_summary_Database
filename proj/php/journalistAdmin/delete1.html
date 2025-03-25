@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <style>
+			*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+    }
+
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#060606;
+}
+
+.w{
+    
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background:#f1e6d6;
+    padding:30px 40px;
+ 
+}
+
+form{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: solid;
+    border-top: solid;
+    position:absolute;
+    inset:2px;
+    background:#F1E6D6;
+    padding:30px 30px;
+
+}
+h2{
+    border-bottom: solid;
+    border-top: solid;
+    color:#060606;
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+}
+.p{
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+}
+.p input{
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color:#060606;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    z-index: 10;
+}
+input[type="reset"]
+{
+    font-size: 20px;
+    border: none;
+    outline:none ;
+    background: #060606;
+    padding: 5px;
+    color: #F1E6D6;
+    margin-top: 40px;
+    border-radius: 3px;
+    font-weight: 600;
+    cursor: pointer;
+}
+input[type="submit"]
+{
+    font-size: 20px;
+    border: none;
+    outline:none ;
+    background: #060606;
+    padding: 5px;
+    color: #F1E6D6;
+    margin-top: 40px;
+    border-radius: 3px;
+    font-weight: 600;
+    cursor: pointer;
+}
+input[type="submit"]:active
+{
+    background: linear-gradient(90deg,#060606,#F1E6D6);
+    opacity: 0.8;
+}
+.p span
+{
+    position: absolute;
+    left:0;
+    padding: 20px 10px 10px;
+    font-size:1em;
+    color:#060606;
+    pointer-events: none;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+.p input:valid ~ span,
+.p input:focus ~ span
+{
+    color: #060606;
+    transform: translateX(-10px) translateY(-30px);
+    font-size: 0.75em;
+}
+		</style>
+        <title>delete</title>
+    </head>
+    <body>
+        <div class="w">
+            <form action="deletedb.php" method="post">
+                <h2>Delete form</h2>
+                <div class="p">
+                    <input type="number" id="re" name="record" value="del" required autofocus>
+                    <span>Enter the id of the record to be deleted from the records displayed</span>
+                    <i></i>
+                </div>
+                <br><br><input type="reset" value="Reset">
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,129 @@
+<html>
+	<head>
+		<style>
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	font-family:"Arial",sans-serif;
+}
+	body{
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			min-height:100vh;
+			background:#060606;
+	}
+	
+	.e{
+		width:400px;
+		padding:20px;
+		background:#F1E6D6;
+		border:1px solid #ccc;
+		border-radius:10px;
+	}
+	
+	.e h2
+	{
+		font-size:20px;
+		text-align:center;
+		margin-bottom:10px;
+	}
+	.e .btn
+	{
+		display: block;
+    width: 50%;
+    padding: 10px;
+    background-color: #060606;
+    color: #F1E6D6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+	}	
+	header{
+	
+			height:700px;
+			width:50;
+		}
+		
+
+		
+	</style>
+	
+	</head>
+	<body>
+	
+		<div class="e">
+			<form action="i_data.php" method="post" onsubmit="return P1()" >
+			<h1>EDITOR FORM</h1><br>
+			<label>First name:</label>
+		    <input type="text" placeholder="enter first name" name="fname"required><br>
+			<br>
+			<label>Last name:</label>
+			<input type="text" placeholder="enter last name"  name="lname"required><br>
+			<br>
+			<label>Phone number:</label>
+			<input type="number"  name="phone" min="1000000000" max="9999999999" placeholder="xxxxxxxx789" required><br>
+			<br>
+			<label>Date of joining:</label>
+			<input type="date" name="date" required><br><br>
+			<label> Experience:</label>
+			<input type="text" name="exp" placeholder ="enter years of experience"required><br><br>
+			
+			<label>Choose a domain to continue with:</label>
+			<br>
+			<input type="radio"  name="domain" value="movie">movie<br>
+			<input type="radio"  name="domain" value="sports">sports<br>
+			<input type="radio" name="domain" value="technology">technology<br>
+			<input type="radio"  name="domain" value="education">education<br>
+			<input type="radio"  name="domain" value="politics">politics<br>
+			<input type="radio"  name="domain" value="entertainment">entertainment<br>
+			<input type="radio"  name="domain" value="other">other<br>
+			
+			<br><br><input type="reset" value="Reset">
+			<br><br><a href="">
+				<input type="submit"  value="submit">
+			</a>
+		</div>
+		<script type="text/javascript">
+			function P1(e)
+			{
+				e.preventDefault();
+				console.log("The");
+				var pn=document.getElementById("phone").value;
+				var x=/^[789]{1}[0-9]{9}$/;
+				
+				if(x.test(pn.value)==false)
+				{
+					alert("invalid");
+					return false;
+				}
+				
+				var email=document.getElementById("em").value;
+				var re_em=/^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+)\.([a-z]+)(\.[a-z]+)?$/;
+				if(re_em.test(em)==false)
+				{
+					alert("invalid");
+				}
+
+				//var username=document.getElementId("un");
+				var password=document.getElementId("pw");
+				/*if(username.value=="")
+				{
+					alert("enter username");
+					return false;
+				}*/
+				 if (password.value== "")
+				{
+					alert("plz enter password");
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+				
+	</script>
+	</body>
+</html>
